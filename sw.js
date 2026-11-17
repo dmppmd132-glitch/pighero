@@ -1,5 +1,5 @@
 // 更新遊戲時，請把版本號 v1 改成 v2、v3……，玩家才會拿到新版
-const CACHE = "pig-hero-v2";
+const CACHE = "pig-hero-v3";
 const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-512-maskable.png"];
 
 self.addEventListener("install", e => {
