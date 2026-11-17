@@ -62,3 +62,36 @@ function refreshMap(){
   document.querySelectorAll(".node-label").forEach((el,i)=>{if(reg&&reg.L[i])el.textContent=reg.L[i][0]||labels[i]});
   updateMapPlayer(p&&p.loc||0);
 }
+
+/* 寶可夢式城鎮自由行走 */
+let townPos={x:50,y:55};
+const TOWN_SPOTS=[
+  {x:20,y:25,name:"村長家",action:()=>mapTalk("mayor")},
+  {x:80,y:25,name:"雜貨店",action:()=>mapTalk("shop")},
+  {x:34,y:48,name:"園丁",action:()=>mapTalk("gardener")},
+  {x:66,y:48,name:"旅人",action:()=>mapTalk("traveler")}
+];
+function paintTownPlayer(){
+  const player=$("hero"); if(!player)return;
+  player.style.left=townPos.x+"%"; player.style.top=townPos.y+"%";
+  player.dataset.townX=Math.round(townPos.x); player.dataset.townY=Math.round(townPos.y);
+}
+function walkMap(dx,dy){
+  if(inBattle)return;
+  townPos.x=Math.max(10,Math.min(90,townPos.x+dx*6));
+  townPos.y=Math.max(12,Math.min(88,townPos.y+dy*7));
+  paintTownPlayer();
+  const nearby=TOWN_SPOTS.find(s=>Math.abs(s.x-townPos.x)<9&&Math.abs(s.y-townPos.y)<10);
+  if(nearby)say(`你來到「${nearby.name}」附近。再走近一點，或點擊地圖上的人物／建築互動。`);
+  else say("波波在新手村的石板路上散步。探索看看吧！");
+}
+function walkMapTo(kind){
+  const spot=TOWN_SPOTS.find(s=>kind==="mayor"?s.name==="村長家":kind==="shop"?s.name==="雜貨店":false);
+  if(spot){townPos.x=spot.x;townPos.y=spot.y+10;paintTownPlayer();spot.action();}
+}
+function interactNearby(){
+  const nearby=TOWN_SPOTS.find(s=>Math.abs(s.x-townPos.x)<10&&Math.abs(s.y-townPos.y)<11);
+  if(nearby)nearby.action();else say("附近沒有可以互動的人物或建築。再走幾步看看吧！");
+}
+const _oldRefreshMap=refreshMap;
+refreshMap=function(){_oldRefreshMap();paintTownPlayer()};

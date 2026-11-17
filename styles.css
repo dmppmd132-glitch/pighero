@@ -246,3 +246,11 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:
 @keyframes shieldpulse{0%{opacity:0;transform:scale(.5)}35%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(1.35)}}
 @keyframes enemyburst{0%{opacity:0;transform:scale(.3)}30%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(1.5) rotate(20deg)}}
 @media(prefers-reduced-motion:reduce){.battle-fx{animation:none!important}}
+
+/* ===== 寶可夢式城鎮自由行走控制 ===== */
+.map-player { z-index:12; left:50%; top:55%; }
+.town-controls { position:absolute; z-index:20; right:10px; bottom:9px; display:grid; grid-template-columns:repeat(3,34px); gap:3px; opacity:.88; }
+.town-controls button { width:34px; height:30px; min-height:30px; padding:0; border-radius:8px; background:#f3e4bcdd; border:2px solid #aa8763; box-shadow:0 2px 0 #836246; font-size:14px; }
+.town-controls button:first-child { grid-column:2; }.town-controls button:nth-child(2){grid-column:1;grid-row:2}.town-controls button:nth-child(3){grid-column:2;grid-row:2}.town-controls button:nth-child(4){grid-column:3;grid-row:2}.town-controls .interact-btn{grid-column:1 / span 3;grid-row:3;width:100%;background:#efb36d;color:#5c3b2d;font-weight:900}
+.town-hint { position:absolute; z-index:15; left:50%; bottom:8px; transform:translateX(-50%); padding:4px 8px; border-radius:8px; background:#fff9; color:#5c684b; font-size:9px; white-space:nowrap; pointer-events:none; }
+@media(max-width:700px){.town-controls{right:7px;bottom:8px;transform:scale(.9);transform-origin:bottom right}.town-hint{left:8px;bottom:8px;transform:none;max-width:58%;white-space:normal;line-height:1.25}.map-player{font-size:37px}}
