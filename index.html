@@ -8,11 +8,30 @@
 <header><h1>🐷 豬豬勇者傳說</h1><span class="tag">第八階段・正式遊戲化</span><button id="muteBtn" class="secondary" onclick="g8mute()" aria-label="音效開關" style="padding:5px 10px">🔊</button></header>
 <div id="hud"></div>
 <main>
-<section id="scene"><div class="caption" id="location">波波新手村</div><div class="hill"></div><div class="tree a">🌳</div><div class="tree b">🌲</div><div class="village">🏡</div><div class="hero" id="hero">🐷</div></section>
+<section id="scene" class="map-scene" aria-label="水彩冒險地圖">
+<div class="caption" id="location">波波新手村</div>
+<div class="map-canvas" id="mapCanvas">
+  <div class="map-cloud cloud-a"></div><div class="map-cloud cloud-b"></div>
+  <div class="map-river"></div><div class="map-path path-a"></div><div class="map-path path-b"></div>
+  <button class="map-node village-node" onclick="mapTalk('mayor')" aria-label="和村長交談"><span class="node-art">🏡</span><span class="node-label">村長家</span></button>
+  <button class="map-node shop-node" onclick="mapTalk('shop')" aria-label="前往商店"><span class="node-art">🏪</span><span class="node-label">雜貨店</span></button>
+  <button class="map-node forest-node" onclick="mapMove(2)" aria-label="前往野花森林"><span class="node-art">🌳</span><span class="node-label">野花森林</span></button>
+  <button class="map-node field-node" onclick="mapMove(1)" aria-label="前往草原小徑"><span class="node-art">🌾</span><span class="node-label">草原小徑</span></button>
+  <button class="map-node stone-node" onclick="mapMove(3)" aria-label="前往古老石碑"><span class="node-art">🪨</span><span class="node-label">古老石碑</span></button>
+  <button class="map-player hero" id="hero" onclick="mapTalk('player')" aria-label="波波目前位置">🐷</button>
+  <div class="map-compass" aria-hidden="true">N<br><span>✦</span></div>
+</div>
+</section>
 <section class="panel"><div id="message">歡迎來到波波新手村！村長似乎有事情想拜託你。先和村長聊聊，開始你的冒險吧！</div>
 <div id="actions" class="actions"></div><div id="log"></div></section>
 </main>
-<footer aria-label="冒險工具列"><button class="secondary" onclick="storyLog()">📖 主線劇情</button><button class="secondary" onclick="questLog()">📜 任務日誌</button><button class="secondary" onclick="teamMenu()">🐷 夥伴與寵物</button><button class="secondary" onclick="areaMenu()">🗺️ 地圖與 BOSS</button><button class="secondary" onclick="equipMenu()">⚔️ 裝備背包</button><button class="secondary" onclick="shopMenu()">🏪 商店</button><button class="secondary" onclick="saveGame()">💾 儲存進度</button><button class="secondary" onclick="loadGame()">📂 載入進度</button><button class="secondary" onclick="g8Settings()">⚙️ 設定</button><button class="danger" onclick="resetGame()">重新開始</button></footer>
+<section id="tabPanel" class="tab-panel" aria-label="功能分頁內容"></section>
+<footer id="tabbar" class="tabbar" aria-label="主要分頁導覽">
+  <button class="tab-button active" data-tab="adventure" onclick="switchTab('adventure')"><span>🧭</span>冒險</button>
+  <button class="tab-button" data-tab="status" onclick="switchTab('status')"><span>🛡️</span>狀態</button>
+  <button class="tab-button" data-tab="quests" onclick="switchTab('quests')"><span>📜</span>任務</button>
+  <button class="tab-button" data-tab="settings" onclick="switchTab('settings')"><span>⚙️</span>設定</button>
+</footer>
 </div>
 
 <script src="js/game-core.js"></script>
@@ -24,4 +43,5 @@
 <script src="js/state.js"></script>
 <script src="js/platform.js"></script>
 <script src="js/ui-panels.js"></script>
+<script src="js/navigation.js"></script>
 <script src="js/bootstrap.js"></script></html>

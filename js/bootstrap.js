@@ -1,10 +1,5 @@
 /* ===== 啟動入口 ===== */
 // 所有資料、函式與全域狀態載入完成後才初始化畫面，避免模組順序造成未定義錯誤。
 hud();
-buttons([
-  ["和村長交談", talk],
-  ["前往村外探索", explore],
-  ["職業選擇", jobMenu],
-  ["技能樹", skillMenu],
-  ["查看角色狀態", showStatus]
-]);
+if(typeof refreshMap==="function")refreshMap();
+if(typeof switchTab==="function")switchTab("adventure");

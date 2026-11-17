@@ -43,6 +43,7 @@
 - `js/platform.js`：音效、存檔、設定、PWA 啟動流程。
 - `js/ui-panels.js`：技能樹、角色與背包介面。
 - `js/bootstrap.js`：所有模組載入完成後的單一啟動入口，避免初始化順序錯誤。
+- `js/navigation.js`：底部分頁導覽、分頁功能按鈕與水彩地圖節點移動／NPC 互動。
 - `sw.js`：PWA v5 快取清單，功能更新時遞增快取名稱。
 - `README.txt`：靜態部署與離線更新說明。
 - `TODO.md`：本次交付的 outcome 與驗收條件。
