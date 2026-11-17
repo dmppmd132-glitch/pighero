@@ -26,3 +26,10 @@
 - [x] 保留傳統 script 全域函式介面，維持 inline `onclick` 與既有存檔格式相容。
 - [x] Service Worker 快取升級至 `pig-hero-v5`，納入所有 CSS／JavaScript 模組。
 - [x] 通過 `node --check`、技能樹／戰鬥／隊伍互動測試、無 page errors 與 `/manus-routes.json` 路由驗證。
+
+## iPhone 15 PWA 介面整理
+
+- [x] 移除情境操作與底部工具列的重複按鈕，保留情境操作於訊息面板，底部集中全域工具。
+- [x] 針對 iPhone 15 直向畫面加入安全區、全寬 PWA 外框、橫向可滑動 HUD 與緊湊場景高度。
+- [x] 調整觸控按鈕至少 42px 高、三欄工具列與訊息／戰鬥面板間距，降低單手遊玩的垂直滾動負擔。
+- [x] iPhone 15 尺寸 393×852 驗證無 page errors、無水平溢出，既有技能樹／戰鬥／隊伍互動測試維持通過。
