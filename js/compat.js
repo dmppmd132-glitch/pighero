@@ -1,0 +1,1 @@
+try{new Function("return ({}).a?.b")}catch(e){document.addEventListener("DOMContentLoaded",function(){var d=document.createElement("div");d.style.cssText="background:#fde2e2;color:#7a1f1f;padding:10px;text-align:center;font:14px sans-serif";d.textContent="⚠️ 你的瀏覽器版本過舊，遊戲可能無法執行。請更新至最新版 Chrome／Edge／Safari／Firefox。";document.body.insertBefore(d,document.body.firstChild)})}

@@ -1,0 +1,107 @@
+:root{--ink:#49372e;--pink:#f7a8b8;--cream:#fff6e9;--gold:#e7b75d;--green:#8abf83}
+*{box-sizing:border-box}body{margin:0;background:#29253b;color:var(--ink);font-family:system-ui,"Noto Sans TC",sans-serif;display:grid;place-items:center;min-height:100vh;padding:18px}
+#game{width:min(100%,1000px);background:var(--cream);border:5px solid #6a4c43;border-radius:18px;overflow:hidden;box-shadow:0 18px 50px #0007}
+header{padding:12px 18px;background:#f4d6a5;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font-size:clamp(20px,3vw,30px);margin:0}.tag{font-size:12px;background:#fff9;border-radius:20px;padding:5px 10px}
+#hud{display:flex;gap:8px;flex-wrap:wrap;padding:10px 16px;background:#fff0d8}.stat{background:white;border:2px solid #edd6b8;border-radius:10px;padding:6px 10px;font-size:14px}
+main{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;padding:12px}
+#scene{min-height:350px;border:3px solid #876b50;border-radius:14px;position:relative;overflow:hidden;background:linear-gradient(#a9d9ec 0 55%,#93c47b 55%);display:flex;align-items:end;justify-content:center}
+#scene:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 30%,#fff9 0 5%,transparent 6%),radial-gradient(ellipse at 80% 22%,#fff9 0 7%,transparent 8%)}
+.hill{position:absolute;bottom:0;width:100%;height:42%;background:#79b76c;clip-path:polygon(0 35%,18% 10%,40% 40%,63% 4%,100% 30%,100% 100%,0 100%)}
+.tree{position:absolute;bottom:28%;font-size:52px;filter:drop-shadow(0 4px 1px #0002)}.tree.a{left:8%}.tree.b{right:8%}
+.village{position:absolute;bottom:24%;font-size:65px;left:39%}
+.hero{position:absolute;bottom:14%;left:48%;transform:translateX(-50%);font-size:75px;filter:drop-shadow(0 5px 2px #0004);animation:bob 1.5s infinite ease-in-out}
+@keyframes bob{50%{transform:translate(-50%,-7px)}}
+#scene.battle{background:linear-gradient(#9b9bd4 0 60%,#71669c 60%)}#scene.battle .hill{background:#71669c}
+.enemy{position:absolute;bottom:18%;right:18%;font-size:88px;filter:drop-shadow(0 6px 2px #0004)}
+#scene .caption{position:absolute;top:12px;left:14px;background:#fffD;padding:7px 12px;border-radius:9px;font-weight:700}
+.panel{background:#fff;border:2px solid #edd6b8;border-radius:14px;padding:12px;min-height:350px;display:flex;flex-direction:column;gap:10px}
+#message{white-space:pre-line;background:#fff6e9;border:1px solid #ead4b5;border-radius:10px;padding:12px;min-height:84px;line-height:1.6}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+button{border:0;border-radius:10px;padding:11px 9px;background:#e9b75f;color:#49372e;font-weight:750;cursor:pointer;box-shadow:0 3px 0 #bd8b3c;transition:.1s}
+button:hover{filter:brightness(1.06);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed}
+button.secondary{background:#d9e8cf;box-shadow:0 3px 0 #9ab58d}button.danger{background:#efb2b2;box-shadow:0 3px 0 #c77f7f}
+#log{font-size:12px;color:#725e52;max-height:76px;overflow:auto;border-top:1px dashed #d8c3a7;padding-top:7px}
+footer{padding:0 16px 14px;display:flex;gap:8px;flex-wrap:wrap}footer button{font-size:13px}
+.bar{height:9px;background:#eee;border-radius:9px;overflow:hidden;margin-top:3px}.bar i{display:block;height:100%;background:#e87979}
+.enemy.boss{font-size:118px}.overlay{position:absolute;inset:0;background:#392b36d9;display:grid;place-items:center;padding:20px;z-index:5}
+.modal{background:#fff6e9;border:4px solid #e5bb77;border-radius:18px;padding:24px;text-align:center;max-width:390px;width:100%}.modal .pig{font-size:76px}
+@media(max-width:700px){main{grid-template-columns:1fr}#scene{min-height:270px}.panel{min-height:280px}}
+
+/* ===== 第八階段：特效與相容性 ===== */
+body{padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(18px,env(safe-area-inset-bottom))}
+@supports(height:100dvh){body{min-height:100dvh}}
+#scene:before,.overlay{top:0;right:0;bottom:0;left:0}
+.hill{-webkit-clip-path:polygon(0 35%,18% 10%,40% 40%,63% 4%,100% 30%,100% 100%,0 100%)}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:active{transform:translateY(2px);box-shadow:none}
+#game.shake{animation:gshake .28s}@keyframes gshake{25%{transform:translate(-5px,2px)}50%{transform:translate(5px,-2px)}75%{transform:translate(-3px,1px)}}
+.fnum{position:absolute;font-weight:900;font-size:26px;pointer-events:none;z-index:4;text-shadow:0 2px 0 #fff,0 0 6px #0006;animation:fup .9s ease-out forwards}
+.fnum.e{right:20%;bottom:48%;color:#d63a3a}.fnum.c{color:#e08a00;font-size:34px}.fnum.w{color:#6b6b8f;font-size:20px}.fnum.p{left:44%;bottom:34%;color:#c0392b}.fnum.h{left:44%;bottom:34%;color:#2e9e4f}
+@keyframes fup{from{transform:translateY(0) scale(.6);opacity:1}30%{transform:translateY(-14px) scale(1.2)}to{transform:translateY(-60px) scale(1);opacity:0}}
+.enemy{animation:eidle 1.9s infinite ease-in-out}@keyframes eidle{50%{transform:translateY(-6px)}}
+.enemy.hit{animation:ehit .3s}@keyframes ehit{25%{transform:translateX(10px);filter:brightness(2.2)}50%{transform:translateX(-8px)}75%{transform:translateX(4px)}}
+.enemy.enter{animation:eenter .5s ease-out}@keyframes eenter{from{transform:translateX(120px) scale(.4);opacity:0}}
+.enemy.dead{animation:edead .7s forwards}@keyframes edead{to{transform:translateY(-30px) rotate(25deg) scale(.2);opacity:0}}
+.hero.hurt{animation:hhurt .3s}@keyframes hhurt{25%{transform:translate(-60%,0);filter:brightness(2)}50%{transform:translate(-40%,0)}}
+.flash{position:absolute;top:0;right:0;bottom:0;left:0;background:#fff;opacity:0;pointer-events:none;z-index:6;animation:fl .35s}@keyframes fl{30%{opacity:.7}to{opacity:0}}
+.pt{position:absolute;left:50%;top:50%;font-size:22px;pointer-events:none;z-index:6;animation:pt 1s ease-out forwards}@keyframes pt{to{transform:translate(var(--dx),var(--dy)) scale(.4);opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero,.enemy,#game{animation:none!important}}
+
+/* ===== 畫面改善：技能樹／背包介面 ===== */
+.ui9{position:fixed;top:0;left:0;right:0;bottom:0;z-index:40;background:#1b1626ec;display:grid;place-items:center;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));overflow:auto;-webkit-overflow-scrolling:touch}
+.ui9 .wrap9{width:min(100%,800px);display:grid;grid-template-columns:270px 1fr;gap:10px}
+@media(max-width:640px){.ui9 .wrap9{grid-template-columns:1fr}}
+.pn9{background:linear-gradient(#a9744a,#8a5a3c);border:4px solid #5e3b27;border-radius:16px;padding:10px;color:#fff6e9;box-shadow:inset 0 0 0 2px #c79a6b,0 10px 30px #0008;width:100%}
+.hd9{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;margin-bottom:8px;flex-wrap:wrap}.hd9 .sp9{flex:1}
+.chip9{background:#5e3b27;border-radius:20px;padding:3px 10px;font-size:13px}.cnt9{font-size:13px;opacity:.85}
+.inner9{background:#f1dc9f;border:3px solid #7c5535;border-radius:12px;padding:10px;color:#49372e}
+.ui9 .b9{padding:8px 12px;border-radius:10px;border:0;background:#e9b75f;box-shadow:0 3px 0 #bd8b3c;color:#49372e;font-weight:800;cursor:pointer;font-size:14px}
+.ui9 .b9.g{background:#a8d58f;box-shadow:0 3px 0 #6fa05a}.ui9 .b9.r{background:#efb2b2;box-shadow:0 3px 0 #c77f7f}.ui9 .b9:disabled{opacity:.45;cursor:not-allowed}
+.ui9 .x9{margin-left:auto;padding:4px 10px;background:#d9e8cf}
+.who9{font-weight:800;text-align:center;margin-bottom:6px}
+.doll9{display:grid;grid-template-columns:62px 1fr 62px;gap:8px;align-items:center;margin:6px 0}
+.slw9{display:grid;gap:4px;text-align:center;font-size:11px}.slw9.col{gap:10px}
+.hero9{font-size:84px;text-align:center;line-height:1.1;background:radial-gradient(#fff6e9,#e3c58a);border-radius:50%;aspect-ratio:1;display:grid;place-items:center;border:3px solid #b98d57}
+.st9{display:flex;flex-wrap:wrap;gap:4px 10px;justify-content:center;font-size:13px;margin-top:6px;font-weight:700}
+.invbody9{display:grid;grid-template-columns:1fr 44px;gap:8px}
+.grid9{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;align-content:start}
+.ui9 .cell9{aspect-ratio:1;position:relative;display:grid;place-items:center;font-size:28px;border:3px solid #8a6840;border-radius:10px;background:#e8cf8e;padding:0;box-shadow:none;cursor:pointer;color:#49372e;transform:none}
+.cell9.empty{opacity:.6;cursor:default}.cell9.r1{background:#cfe4f7;border-color:#4a7fb5}.cell9.r2{background:#e3d2f5;border-color:#8a57c4}.cell9.r3{background:#ffe9a0;border-color:#d49a1a;box-shadow:0 0 8px #ffd34d}
+.cell9.on{outline:4px solid #4fd13a;outline-offset:-1px}
+.cell9 i{position:absolute;right:2px;bottom:0;font-size:11px;font-style:normal;font-weight:800;background:#fffb;border-radius:6px;padding:0 3px}
+.tabs9{display:grid;gap:6px;align-content:start}
+.ui9 .tab9{width:44px;height:44px;padding:0;border-radius:0 12px 12px 0;border:3px solid #7c5535;background:#c79a6b;box-shadow:none;font-size:20px;cursor:pointer}.ui9 .tab9.on{background:#a8d58f}
+.det9{margin-top:10px;min-height:96px;line-height:1.5;font-size:14px}.nm9{font-weight:800;font-size:16px}.sm9{font-size:12px;opacity:.85}
+.btns9{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.msg9{background:#fff8;border-radius:8px;padding:4px 8px;margin-bottom:6px;font-size:13px;font-weight:700}
+.ui9 svg{width:100%;height:auto;display:block;border-radius:12px;background:radial-gradient(circle at 50% 50%,#5a3f27,#241810);border:3px solid #7c5535}
+.bd9{fill:none;stroke:#b38a54;stroke-opacity:.28;stroke-width:1.5}.ln9{stroke:#4b3a30;stroke-width:5;stroke-linecap:round}.ln9.lit{stroke:#ffd96a;filter:drop-shadow(0 0 4px #ffd96a)}
+.hx9{cursor:pointer;stroke-width:3;stroke:var(--c)}.hx9:hover{filter:brightness(1.25)}
+.hx9.act{--c:#f08a3c}.hx9.pas{--c:#b57cf0}.hx9.pro{--c:#f0c24a}.hx9.core{--c:#6fd0e0;fill:#35616c}
+.hx9.off{fill:#4a392c}.hx9.on.act{fill:#e0782a}.hx9.on.pas{fill:#8b4fd0}.hx9.on.pro{fill:#d9a31a}
+.hx9.can{animation:pulse9 1.3s infinite}@keyframes pulse9{50%{stroke:#fff;filter:drop-shadow(0 0 6px #fff)}}
+.hx9.sel{stroke:#4fd13a;stroke-width:5}
+.ic9t{font-size:19px;text-anchor:middle;pointer-events:none}.nm9t{font-size:9px;text-anchor:middle;fill:#fff;font-weight:700;pointer-events:none}
+.nu9t{font-size:10px;font-weight:900;text-anchor:middle;pointer-events:none;fill:#ffb27a}.nu9t.pas{fill:#d9b8ff}.nu9t.pro{fill:#ffe38a}.ck9t{font-size:11px;fill:#9dff8a;text-anchor:middle;pointer-events:none;font-weight:900}
+.lg9{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;margin:6px 0}
+@media(prefers-reduced-motion:reduce){.hx9.can{animation:none}}
+
+/* ===== 戰鬥畫面：敵人血條／隊伍站位／技能特效 ===== */
+#scene.battle{background:linear-gradient(180deg,#514d87 0%,#292443 58%,#191827 100%);align-items:end}
+#scene.battle .hill{height:52%;background:linear-gradient(180deg,#746aa0,#3e3969);opacity:.92}
+#scene.battle .tree,#scene.battle .village{opacity:.18;filter:grayscale(.8)}
+#scene.battle .caption{display:none}
+#scene.battle>.hero{opacity:0;pointer-events:none}
+.battle-hud{position:absolute;inset:0;z-index:4;pointer-events:none}
+.enemy-card{position:absolute;top:14px;right:14px;width:min(49%,270px);padding:9px 11px;background:#241c36e8;border:2px solid #d99adf;border-radius:12px;color:#fff6ff;box-shadow:0 5px 18px #0007}
+.enemy-card .enemy-title{display:flex;align-items:center;gap:7px;font-weight:850;font-size:14px}.enemy-title .enemy-kind{margin-left:auto;color:#ffd96a;font-size:11px}
+.enemy-card .enemy-sub{font-size:11px;color:#e0cde7;margin-top:2px}.battle-hp{height:10px;margin-top:6px;background:#191625;border:1px solid #8c668f;border-radius:99px;overflow:hidden}.battle-hp i{display:block;height:100%;width:var(--hp,100%);background:linear-gradient(90deg,#f45c70,#ffbd64);border-radius:inherit;transition:width .28s ease}.battle-hp small{display:block;margin-top:3px;text-align:right;font-size:10px;color:#fff}
+.turn-badge{position:absolute;top:16px;left:14px;padding:6px 10px;border:1px solid #8ed5e3;border-radius:999px;background:#172c42dd;color:#d8f9ff;font-size:12px;font-weight:800;box-shadow:0 3px 12px #0005}.turn-badge.enemy-turn{border-color:#f59baf;background:#4b2139dd;color:#ffe0e9}
+.party-grid{position:absolute;left:10px;right:10px;bottom:9px;display:flex;align-items:end;gap:6px;min-height:92px;z-index:2}.party-slot{width:clamp(52px,15%,78px);padding:5px 4px 4px;background:#1f2945e6;border:1px solid #6c9ac0;border-radius:10px;text-align:center;color:#f7fbff;box-shadow:0 4px 12px #0006;transition:.2s}.party-slot.leader{border-color:#ffd96a;background:#3c3450e8}.party-slot.dead{opacity:.45;filter:grayscale(.8)}.party-slot .party-emoji{font-size:31px;line-height:1.05;display:block}.party-slot .party-name{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:10px;font-weight:800}.party-slot .party-role{display:block;color:#b8d8ec;font-size:9px}.party-slot .mini-hp{height:5px;background:#101525;border-radius:99px;overflow:hidden;margin-top:4px}.party-slot .mini-hp i{display:block;height:100%;width:var(--hp,100%);background:#72d58d}.party-slot.dead .mini-hp i{background:#8e6670}.battle-effects{position:absolute;inset:0;z-index:8;pointer-events:none;overflow:hidden}.battle-fx{position:absolute;font-weight:950;text-shadow:0 2px 0 #21152b,0 0 10px #fff;animation:bfx .8s ease-out forwards}.battle-fx.slash{right:29%;top:42%;font-size:46px;color:#ffe7ae;transform:rotate(-18deg)}.battle-fx.magic{right:30%;top:34%;font-size:42px;color:#f0a6ff;filter:drop-shadow(0 0 8px #bb4eff)}.battle-fx.hit{right:25%;top:45%;font-size:34px;color:#ff8d89}.battle-fx.heal{left:26%;bottom:29%;font-size:38px;color:#9affbd;filter:drop-shadow(0 0 8px #56eb9a)}.battle-fx.shield{left:24%;bottom:28%;font-size:48px;color:#8fe8ff;filter:drop-shadow(0 0 8px #3bbbe5)}.battle-fx.enemy{left:52%;top:34%;font-size:36px;color:#ff9aaf}
+@keyframes bfx{0%{opacity:0;transform:scale(.4) translateY(10px)}25%{opacity:1;transform:scale(1.2) translateY(0)}100%{opacity:0;transform:scale(.8) translateY(-42px)}}
+.enemy-card.hit-card{animation:cardhit .28s}@keyframes cardhit{35%{transform:translateX(7px);border-color:#fff}70%{transform:translateX(-5px)}}
+/* 路線圖的鎖定與前置關係 */
+.hx9.locked{fill:#2d2530;stroke:#6b5965;filter:grayscale(.55)}.hx9.locked:hover{filter:grayscale(.3) brightness(1.15)}
+.lock9t{font-size:11px;text-anchor:middle;pointer-events:none;fill:#d0bdc7}.req9t{font-size:8px;text-anchor:middle;pointer-events:none;fill:#f0ccd9}
+@media(max-width:640px){.enemy-card{width:58%;top:9px;right:9px;padding:7px 8px}.turn-badge{top:9px;left:9px;font-size:10px}.party-grid{gap:3px;bottom:6px}.party-slot{width:54px;padding:4px 2px}.party-slot .party-emoji{font-size:25px}.party-slot .party-role{display:none}.battle-fx.slash{right:25%}}
+@media(prefers-reduced-motion:reduce){.battle-fx,.enemy-card.hit-card{animation:none!important}.battle-hp i{transition:none}}
+

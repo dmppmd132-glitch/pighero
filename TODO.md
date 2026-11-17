@@ -17,3 +17,12 @@
 - [x] 修改 `sw.js` 快取版本至 `pig-hero-v3`，並補上 `/manus-routes.json` 路由清單，讓既有安裝版能取得本次 `index.html` 更新。
 
 驗證結果：JavaScript `node --check` 通過；Chromium 互動測試確認鎖定節點、技能點不誤扣、敵人血條更新、單人與三人隊伍站位，以及技能特效節點均正常，且無 page error。
+
+## 程式碼重構與回歸驗收
+
+- [x] 從單一 `index.html` 抽出獨立 `styles.css`，保留技能樹、戰鬥 HUD 與特效樣式。
+- [x] 將遊戲邏輯拆分為核心、裝備、狀態、戰鬥、隊伍、世界、劇情、平台與 UI 模組。
+- [x] 以 `bootstrap.js` 統一初始化，確保全域狀態在所有函式載入後才使用。
+- [x] 保留傳統 script 全域函式介面，維持 inline `onclick` 與既有存檔格式相容。
+- [x] Service Worker 快取升級至 `pig-hero-v5`，納入所有 CSS／JavaScript 模組。
+- [x] 通過 `node --check`、技能樹／戰鬥／隊伍互動測試、無 page errors 與 `/manus-routes.json` 路由驗證。

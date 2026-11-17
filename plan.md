@@ -30,7 +30,19 @@
 
 ## 專案結構
 
-- `index.html`：主遊戲畫面、樣式、技能路線圖 SVG、戰鬥狀態與特效邏輯。
-- `sw.js`：PWA 快取版本，功能更新時遞增快取名稱。
+- `index.html`：遊戲 HTML 骨架與各模組的載入入口，不再承載整體 CSS／JavaScript 實作。
+- `styles.css`：遊戲版面、技能樹、戰鬥 HUD、隊伍卡與技能特效樣式。
+- `js/compat.js`：舊瀏覽器相容性提示。
+- `js/game-core.js`：職業、技能樹資料與角色核心函式。
+- `js/equipment.js`：裝備、背包與商店系統。
+- `js/state.js`：全域遊戲狀態與初始角色資料。
+- `js/battle.js`：怪物、戰鬥流程、敵人血條、隊伍 HUD 與技能特效。
+- `js/party.js`：夥伴、寵物與隊伍編成。
+- `js/world.js`：區域、地圖、探索與任務系統。
+- `js/story.js`：主線劇情、BOSS、寶石與結局。
+- `js/platform.js`：音效、存檔、設定、PWA 啟動流程。
+- `js/ui-panels.js`：技能樹、角色與背包介面。
+- `js/bootstrap.js`：所有模組載入完成後的單一啟動入口，避免初始化順序錯誤。
+- `sw.js`：PWA v5 快取清單，功能更新時遞增快取名稱。
 - `README.txt`：靜態部署與離線更新說明。
 - `TODO.md`：本次交付的 outcome 與驗收條件。
