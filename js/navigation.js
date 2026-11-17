@@ -65,6 +65,7 @@ function refreshMap(){
 
 /* 寶可夢式城鎮自由行走 */
 let townPos={x:50,y:55};
+let townFacing="down";
 const TOWN_SPOTS=[
   {x:20,y:25,name:"村長家",action:()=>mapTalk("mayor")},
   {x:80,y:25,name:"雜貨店",action:()=>mapTalk("shop")},
@@ -73,11 +74,14 @@ const TOWN_SPOTS=[
 ];
 function paintTownPlayer(){
   const player=$("hero"); if(!player)return;
+  player.classList.remove("facing-down","facing-up","facing-left","facing-right");
+  player.classList.add("facing-"+townFacing);
   player.style.left=townPos.x+"%"; player.style.top=townPos.y+"%";
   player.dataset.townX=Math.round(townPos.x); player.dataset.townY=Math.round(townPos.y);
 }
 function walkMap(dx,dy){
   if(inBattle)return;
+  if(dx<0)townFacing="left"; else if(dx>0)townFacing="right"; else if(dy<0)townFacing="up"; else if(dy>0)townFacing="down";
   townPos.x=Math.max(10,Math.min(90,townPos.x+dx*6));
   townPos.y=Math.max(12,Math.min(88,townPos.y+dy*7));
   paintTownPlayer();

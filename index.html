@@ -8,7 +8,7 @@
 <header><h1>🐷 豬豬勇者傳說</h1><span class="tag">第八階段・正式遊戲化</span><button id="muteBtn" class="secondary" onclick="g8mute()" aria-label="音效開關" style="padding:5px 10px">🔊</button></header>
 <div id="hud"></div>
 <main>
-<section id="scene" class="map-scene" aria-label="水彩冒險地圖">
+<section id="scene" class="map-scene" aria-label="16-bit 像素冒險地圖">
 <div class="caption" id="location">波波新手村</div>
 <div class="map-canvas" id="mapCanvas">
   <div class="map-cloud cloud-a"></div><div class="map-cloud cloud-b"></div>
@@ -28,7 +28,7 @@
   <button class="map-node stone-node" onclick="mapMove(3)" aria-label="前往遺跡"><span class="node-art">🪨</span><span class="node-label">遺跡</span></button>
   <button class="map-npc npc-a" onclick="mapTalk('gardener')" aria-label="和園丁對話">🧑‍🌾<small>園丁</small></button>
   <button class="map-npc npc-b" onclick="mapTalk('traveler')" aria-label="和旅人對話">🧙<small>旅人</small></button>
-  <button class="map-player hero" id="hero" onclick="mapTalk('player')" aria-label="波波目前位置">🐷</button>
+  <button class="map-player hero facing-down" id="hero" onclick="mapTalk('player')" aria-label="波波目前位置"></button>
   <div class="town-dpad" aria-label="城鎮移動控制">
     <button onclick="walkMap(0,-1)" aria-label="向上">▲</button>
     <button onclick="walkMap(-1,0)" aria-label="向左">◀</button>

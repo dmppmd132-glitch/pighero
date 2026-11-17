@@ -313,3 +313,14 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:
 .map-bridge::before { top:-7px; }.map-bridge::after { bottom:-7px; }
 .bridge-n { left:36%; top:29%; }.bridge-s { left:41%; top:68%; }
 .map-path { z-index:3; background:repeating-linear-gradient(135deg,#d8c39aaa 0 13px,#c4ae9299 13px 16px); box-shadow:0 0 0 3px #fff3,0 2px 8px #7e655333; }
+
+/* 像素城鎮背景與 4 方向 × 3 格小豬精靈 */
+.map-canvas { background-image:url("./town-map-pixel.png"); background-size:cover; background-position:center; background-repeat:no-repeat; }
+.map-canvas > .map-cloud, .map-canvas > .map-river, .map-canvas > .map-bridge, .map-canvas > .map-path, .map-canvas > .map-square, .map-canvas > .map-fence, .map-canvas > .map-house, .map-canvas > .map-tree, .map-canvas > .map-bush, .map-canvas > .map-flower, .map-canvas > .map-bench, .map-canvas > .map-sign { display:none; }
+.map-player.hero { width:58px; height:70px; min-height:70px; font-size:0; background-image:url("./pig-adventurer-sprite.png"); background-size:300% 400%; background-repeat:no-repeat; background-color:transparent; filter:drop-shadow(0 4px 2px #271b1977); mix-blend-mode:multiply; animation:pig-walk-down .48s steps(1) infinite; }
+.map-player.hero.facing-down { background-position:0 0; animation-name:pig-walk-down; }.map-player.hero.facing-up { background-position:0 33.333%; animation-name:pig-walk-up; }.map-player.hero.facing-left { background-position:0 66.666%; animation-name:pig-walk-left; }.map-player.hero.facing-right { background-position:0 100%; animation-name:pig-walk-right; }
+@keyframes pig-walk-down { 0%,100%{background-position:0 0} 33%{background-position:50% 0} 66%{background-position:100% 0} }
+@keyframes pig-walk-up { 0%,100%{background-position:0 33.333%} 33%{background-position:50% 33.333%} 66%{background-position:100% 33.333%} }
+@keyframes pig-walk-left { 0%,100%{background-position:0 66.666%} 33%{background-position:50% 66.666%} 66%{background-position:100% 66.666%} }
+@keyframes pig-walk-right { 0%,100%{background-position:0 100%} 33%{background-position:50% 100%} 66%{background-position:100% 100%} }
+@media(prefers-reduced-motion:reduce){.map-player.hero{animation:none;background-position:50% 0}}
