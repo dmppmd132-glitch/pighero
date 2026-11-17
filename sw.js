@@ -1,5 +1,5 @@
 // 更新遊戲時，請把版本號 v1 改成 v2、v3……，玩家才會拿到新版
-const CACHE = "pig-hero-v9";
+const CACHE = "pig-hero-v10";
 const ASSETS = ["./", "./index.html", "./styles.css", "./js/compat.js", "./js/game-core.js", "./js/equipment.js", "./js/battle.js", "./js/party.js", "./js/world.js", "./js/story.js", "./js/state.js", "./js/platform.js", "./js/ui-panels.js", "./js/navigation.js", "./js/bootstrap.js", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./icon-512-maskable.png"];
 
 self.addEventListener("install", e => {

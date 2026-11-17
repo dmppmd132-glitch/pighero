@@ -12,11 +12,11 @@
 <div class="caption" id="location">波波新手村</div>
 <div class="map-canvas" id="mapCanvas">
   <div class="map-cloud cloud-a"></div><div class="map-cloud cloud-b"></div>
-  <div class="map-river"></div><div class="map-path path-a"></div><div class="map-path path-b"></div>
+  <div class="map-river"></div><div class="map-bridge bridge-n" aria-hidden="true"></div><div class="map-bridge bridge-s" aria-hidden="true"></div><div class="map-path path-a"></div><div class="map-path path-b"></div>
   <div class="map-square"><div class="map-fountain">⛲</div></div>
   <div class="map-fence fence-n"></div><div class="map-fence fence-e"></div><div class="map-fence fence-s"></div>
   <div class="map-house house-nw">🏠<span>村長家</span></div><div class="map-house house-ne">🏠<span>旅店</span></div>
-  <div class="map-house house-sw">🏡<span>小木屋</span></div><div class="map-house house-se">🏠<span>工坊</span></div>
+  <div class="map-house house-sw">🏡<span>小木屋</span></div><div class="map-house house-se">🏠<span>古老石碑</span></div>
   <div class="map-tree tree-n">🌳</div><div class="map-tree tree-e">🌳</div><div class="map-tree tree-s">🌲</div><div class="map-tree tree-w">🌳</div>
   <div class="map-bush bush-n">🌿🌿</div><div class="map-bush bush-s">🌿🌿🌿</div><div class="map-bush bush-e">🌿🌿</div>
   <div class="map-flower flowers-w">✿　✿<br>　✿</div><div class="map-flower flowers-e">✿ ✿<br>　✿</div>
@@ -25,18 +25,18 @@
   <button class="map-node shop-node" onclick="walkMapTo('shop')" aria-label="前往商店"><span class="node-art">🏪</span><span class="node-label">雜貨店</span></button>
   <button class="map-node forest-node" onclick="mapMove(2)" aria-label="前往野花森林"><span class="node-art">🌳</span><span class="node-label">野花森林</span></button>
   <button class="map-node field-node" onclick="mapMove(1)" aria-label="前往草原小徑"><span class="node-art">🌾</span><span class="node-label">草原小徑</span></button>
-  <button class="map-node stone-node" onclick="mapMove(3)" aria-label="前往古老石碑"><span class="node-art">🪨</span><span class="node-label">古老石碑</span></button>
+  <button class="map-node stone-node" onclick="mapMove(3)" aria-label="前往遺跡"><span class="node-art">🪨</span><span class="node-label">遺跡</span></button>
   <button class="map-npc npc-a" onclick="mapTalk('gardener')" aria-label="和園丁對話">🧑‍🌾<small>園丁</small></button>
   <button class="map-npc npc-b" onclick="mapTalk('traveler')" aria-label="和旅人對話">🧙<small>旅人</small></button>
   <button class="map-player hero" id="hero" onclick="mapTalk('player')" aria-label="波波目前位置">🐷</button>
-  <div class="map-compass" aria-hidden="true">N<br><span>✦</span></div>
-  <div class="town-controls" aria-label="城鎮移動控制">
+  <div class="town-dpad" aria-label="城鎮移動控制">
     <button onclick="walkMap(0,-1)" aria-label="向上">▲</button>
     <button onclick="walkMap(-1,0)" aria-label="向左">◀</button>
     <button onclick="walkMap(0,1)" aria-label="向下">▼</button>
-    <button onclick="walkMap(1,0)" aria-label="向右">▶</button><button class="interact-btn" onclick="interactNearby()" aria-label="互動">A</button>
+    <button onclick="walkMap(1,0)" aria-label="向右">▶</button>
   </div>
-  <div class="town-hint">點擊方向鍵在城鎮中移動，靠近人物或建築後可互動</div>
+  <button class="town-interact" onclick="interactNearby()" aria-label="互動">A</button>
+  <div class="town-hint">方向鍵移動　A 互動</div>
 </div>
 </section>
 <section class="panel"><div id="message">歡迎來到波波新手村！村長似乎有事情想拜託你。先和村長聊聊，開始你的冒險吧！</div>

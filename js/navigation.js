@@ -58,8 +58,8 @@ function updateMapPlayer(index){
 }
 function refreshMap(){
   const a=p&&p.area||0, reg=typeof REG!=="undefined"?REG[a]:null;
-  const labels=["村長家","草原小徑","野花森林","古老石碑"];
-  document.querySelectorAll(".node-label").forEach((el,i)=>{if(reg&&reg.L[i])el.textContent=reg.L[i][0]||labels[i]});
+  const labels=["波波新手村","雜貨店","野花森林","草原小徑","遺跡"];
+  document.querySelectorAll(".map-node .node-label").forEach((el,i)=>{el.textContent=labels[i]||el.textContent});
   updateMapPlayer(p&&p.loc||0);
 }
 
