@@ -93,9 +93,29 @@ function walkMapTo(kind){
   const spot=TOWN_SPOTS.find(s=>kind==="mayor"?s.name==="村長家":kind==="shop"?s.name==="雜貨店":false);
   if(spot){townPos.x=spot.x;townPos.y=spot.y+10;paintTownPlayer();spot.action();}
 }
+
+function townMapClick(e){
+  if(inBattle)return;
+  const canvas=$("mapCanvas");
+  if(!canvas||e.target.closest(".map-node,.map-npc,.map-player,.town-interact"))return;
+  const r=canvas.getBoundingClientRect();
+  const x=Math.max(10,Math.min(90,((e.clientX-r.left)/r.width)*100));
+  const y=Math.max(12,Math.min(88,((e.clientY-r.top)/r.height)*100));
+  const dx=x-townPos.x, dy=y-townPos.y;
+  if(Math.abs(dx)>Math.abs(dy))townFacing=dx<0?"left":"right";
+  else if(Math.abs(dy)>1)townFacing=dy<0?"up":"down";
+  townPos.x=x; townPos.y=y; paintTownPlayer();
+  const nearby=TOWN_SPOTS.find(s=>Math.abs(s.x-townPos.x)<9&&Math.abs(s.y-townPos.y)<10);
+  if(nearby)say(`你來到「${nearby.name}」附近。按 A 或再點擊人物／建築互動。`);
+  else say("波波走到你點擊的地方。繼續探索新手村吧！");
+}
+function bindTownMapClick(){
+  const canvas=$("mapCanvas");
+  if(canvas&&!canvas.dataset.clickMove){canvas.addEventListener("click",townMapClick);canvas.dataset.clickMove="1";}
+}
 function interactNearby(){
   const nearby=TOWN_SPOTS.find(s=>Math.abs(s.x-townPos.x)<10&&Math.abs(s.y-townPos.y)<11);
   if(nearby)nearby.action();else say("附近沒有可以互動的人物或建築。再走幾步看看吧！");
 }
 const _oldRefreshMap=refreshMap;
-refreshMap=function(){_oldRefreshMap();paintTownPlayer()};
+refreshMap=function(){_oldRefreshMap();paintTownPlayer();bindTownMapClick()};

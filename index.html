@@ -29,14 +29,8 @@
   <button class="map-npc npc-a" onclick="mapTalk('gardener')" aria-label="和園丁對話">🧑‍🌾<small>園丁</small></button>
   <button class="map-npc npc-b" onclick="mapTalk('traveler')" aria-label="和旅人對話">🧙<small>旅人</small></button>
   <button class="map-player hero facing-down" id="hero" onclick="mapTalk('player')" aria-label="波波目前位置"></button>
-  <div class="town-dpad" aria-label="城鎮移動控制">
-    <button onclick="walkMap(0,-1)" aria-label="向上">▲</button>
-    <button onclick="walkMap(-1,0)" aria-label="向左">◀</button>
-    <button onclick="walkMap(0,1)" aria-label="向下">▼</button>
-    <button onclick="walkMap(1,0)" aria-label="向右">▶</button>
-  </div>
   <button class="town-interact" onclick="interactNearby()" aria-label="互動">A</button>
-  <div class="town-hint">方向鍵移動　A 互動</div>
+  <div class="town-hint">點擊地圖移動　A 互動</div>
 </div>
 </section>
 <section class="panel"><div id="message">歡迎來到波波新手村！村長似乎有事情想拜託你。先和村長聊聊，開始你的冒險吧！</div>

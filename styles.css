@@ -324,3 +324,8 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:
 @keyframes pig-walk-left { 0%,100%{background-position:0 66.666%} 33%{background-position:50% 66.666%} 66%{background-position:100% 66.666%} }
 @keyframes pig-walk-right { 0%,100%{background-position:0 100%} 33%{background-position:50% 100%} 66%{background-position:100% 100%} }
 @media(prefers-reduced-motion:reduce){.map-player.hero{animation:none;background-position:50% 0}}
+
+/* 已改為點擊地圖移動，保留舊控制器樣式名稱但不顯示 */
+.town-dpad { display:none !important; }
+.map-canvas { cursor:crosshair; }
+.map-node,.map-npc,.map-player,.town-interact { cursor:pointer; }
