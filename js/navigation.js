@@ -38,6 +38,8 @@ function mapTalk(kind){
   if(inBattle)return;
   if(kind==="mayor"){p.loc=0;updateMapPlayer(0);townMenu();return}
   if(kind==="shop"){p.loc=0;updateMapPlayer(0);shopMenu();return}
+  if(kind==="gardener"){say("園丁：「中央噴水池的水，來自北方的精靈泉。最近森林裡好像有奇怪的腳印……」");return}
+  if(kind==="traveler"){say("旅人：「沿著石板路往外走吧！每一片森林，都藏著一段勇者故事。」");return}
   say("波波在地圖上眨了眨眼。點選地點就能前往探索，或從下方分頁查看冒險功能。");
 }
 function mapMove(index){

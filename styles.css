@@ -215,3 +215,34 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:
   .tabbar { padding-left:10px; padding-right:10px; }
 }
 @media (prefers-reduced-motion:reduce) { .map-player { animation:none; transition:none; } }
+
+/* ===== 俯視村莊水彩地圖 ===== */
+.map-canvas { background:
+  radial-gradient(ellipse at 50% 50%,#e5d4a0 0 18%,transparent 19%),
+  linear-gradient(90deg,transparent 0 42%,#e5d39b 42% 58%,transparent 58%),
+  linear-gradient(0deg,transparent 0 39%,#e5d39b 39% 61%,transparent 61%),
+  linear-gradient(145deg,#b8d695 0 28%,#a4c985 28% 70%,#c9d99a 70%); }
+.map-canvas:before { content:""; position:absolute; inset:0; z-index:2; pointer-events:none; background:repeating-linear-gradient(103deg,transparent 0 18px,#fff2 19px 20px,transparent 21px 37px); opacity:.35; mix-blend-mode:screen; }
+.map-square { position:absolute; z-index:3; left:37%; top:36%; width:26%; height:30%; border:8px solid #d9c897aa; background:#e7d5a6aa; box-shadow:inset 0 0 0 3px #fff5; transform:rotate(-2deg); }
+.map-fountain { position:absolute; inset:18% 22%; display:grid; place-items:center; border:5px solid #9c917f; border-radius:50%; background:#71bdd0cc; color:#f6f1d8; font-size:38px; filter:drop-shadow(0 4px 1px #63765a55); }
+.map-house { position:absolute; z-index:4; display:grid; place-items:center; width:72px; height:53px; border:3px solid #a56e4d; border-radius:7px 7px 12px 12px; background:#fff0d1; color:#b24f3d; font-size:39px; line-height:1; filter:drop-shadow(2px 3px 0 #6b704655); transform:rotate(-2deg); }
+.map-house:before { content:""; position:absolute; z-index:-1; top:-17px; left:-5px; width:76px; height:33px; border-radius:70% 20% 5% 10%; background:#c9664d; border:3px solid #934738; transform:skewX(-12deg); }
+.map-house span { position:absolute; bottom:1px; font-size:8px; color:#66483b; background:#fff9; padding:1px 4px; white-space:nowrap; }
+.house-nw{left:5%;top:9%}.house-ne{right:5%;top:9%;transform:rotate(2deg)}.house-sw{left:5%;bottom:7%;transform:rotate(2deg)}.house-se{right:5%;bottom:7%}
+.map-tree { position:absolute; z-index:5; font-size:36px; filter:drop-shadow(2px 4px 1px #58714366); }.tree-n{left:43%;top:6%}.tree-e{right:2%;top:46%}.tree-s{left:42%;bottom:2%}.tree-w{left:0;top:49%}
+.map-npc { position:absolute; z-index:6; min-width:39px; min-height:43px; padding:1px; border:0; background:transparent; box-shadow:none; font-size:28px; line-height:1; filter:drop-shadow(1px 3px 1px #53644766); }.map-npc small{display:block;font-size:8px;color:#54443a;background:#fff9;border-radius:5px;padding:1px 3px}.npc-a{left:31%;top:46%}.npc-b{right:31%;top:47%}
+.map-node { background:#fff7e9d9; }
+@media(max-width:700px){.map-square{border-width:5px}.map-fountain{font-size:28px;border-width:3px}.map-house{width:57px;height:42px;font-size:29px}.map-house:before{width:61px;height:26px;top:-13px}.map-house span{font-size:7px}.map-tree{font-size:28px}.map-npc{font-size:23px}.npc-a{left:27%}.npc-b{right:27%}}
+
+/* ===== 戰鬥招式水彩特效加強 ===== */
+.battle-fx { display:grid; place-items:center; width:88px; height:88px; border-radius:50%; mix-blend-mode:screen; }
+.battle-fx.slash { width:110px; height:55px; right:24%; top:39%; color:#fff0ae; background:linear-gradient(135deg,transparent 35%,#fff4a888 36% 43%,transparent 44% 53%,#ff866688 54% 60%,transparent 61%); font-size:52px; text-shadow:0 0 12px #fff; }
+.battle-fx.magic { right:26%; top:28%; color:#f9d4ff; background:radial-gradient(circle,#fff 0 4%,#ea8fff99 5% 18%,transparent 53%); font-size:46px; animation:spellburst .85s ease-out forwards; }
+.battle-fx.heal { left:19%; bottom:23%; color:#eaffc3; background:radial-gradient(circle,#fff 0 5%,#7dffb788 6% 25%,transparent 62%); font-size:42px; animation:healglow .85s ease-out forwards; }
+.battle-fx.shield { left:17%; bottom:22%; color:#c9faff; border:5px solid #8beaffaa; box-shadow:0 0 18px #5be4ff, inset 0 0 15px #d8ffff88; font-size:42px; animation:shieldpulse .85s ease-out forwards; }
+.battle-fx.enemy { left:48%; top:29%; color:#ffd2dc; background:radial-gradient(circle,#fff 0 4%,#ff708088 6% 25%,transparent 62%); font-size:40px; animation:enemyburst .85s ease-out forwards; }
+@keyframes spellburst{0%{opacity:0;transform:scale(.15) rotate(0)}35%{opacity:1;transform:scale(1.2) rotate(80deg)}100%{opacity:0;transform:scale(1.8) rotate(160deg)}}
+@keyframes healglow{0%{opacity:0;transform:translateY(15px) scale(.4)}35%{opacity:1;transform:translateY(0) scale(1.15)}100%{opacity:0;transform:translateY(-30px) scale(1.5)}}
+@keyframes shieldpulse{0%{opacity:0;transform:scale(.5)}35%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(1.35)}}
+@keyframes enemyburst{0%{opacity:0;transform:scale(.3)}30%{opacity:1;transform:scale(1.2)}100%{opacity:0;transform:scale(1.5) rotate(20deg)}}
+@media(prefers-reduced-motion:reduce){.battle-fx{animation:none!important}}
