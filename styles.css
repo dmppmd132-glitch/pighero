@@ -254,3 +254,27 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:
 .town-controls button:first-child { grid-column:2; }.town-controls button:nth-child(2){grid-column:1;grid-row:2}.town-controls button:nth-child(3){grid-column:2;grid-row:2}.town-controls button:nth-child(4){grid-column:3;grid-row:2}.town-controls .interact-btn{grid-column:1 / span 3;grid-row:3;width:100%;background:#efb36d;color:#5c3b2d;font-weight:900}
 .town-hint { position:absolute; z-index:15; left:50%; bottom:8px; transform:translateX(-50%); padding:4px 8px; border-radius:8px; background:#fff9; color:#5c684b; font-size:9px; white-space:nowrap; pointer-events:none; }
 @media(max-width:700px){.town-controls{right:7px;bottom:8px;transform:scale(.9);transform-origin:bottom right}.town-hint{left:8px;bottom:8px;transform:none;max-width:58%;white-space:normal;line-height:1.25}.map-player{font-size:37px}}
+
+/* ===== 參考俯視城鎮的細節圖塊 ===== */
+.map-canvas { background:
+  linear-gradient(90deg,transparent 0 43%,#d2bc86 43% 57%,transparent 57%),
+  linear-gradient(0deg,transparent 0 40%,#d2bc86 40% 60%,transparent 60%),
+  radial-gradient(ellipse at 15% 76%,#dbe4a5 0 16%,transparent 17%),
+  radial-gradient(ellipse at 85% 76%,#dbe4a5 0 17%,transparent 18%),
+  linear-gradient(135deg,#a9ca80 0 24%,#bdd58e 24% 72%,#9fbe75 72%); }
+.map-canvas:after { opacity:.24; background-image:radial-gradient(#fff 1px,transparent 1px),repeating-linear-gradient(21deg,transparent 0 13px,#507d4a22 14px 15px); background-size:13px 11px,auto; }
+.map-path { height:19px; background:repeating-linear-gradient(90deg,#e7e0c5 0 24px,#b8b29d 25px 28px,#eee5c7 29px 51px); border:2px solid #9d957d; box-shadow:0 2px 0 #766e5c55; opacity:1; }
+.path-a { width:49%; left:24%; top:59%; transform:rotate(-31deg); }.path-b { width:43%; left:37%; top:64%; transform:rotate(27deg); }
+.map-square { left:37%; top:35%; width:26%; height:31%; border:9px solid #a79a7d; background:repeating-linear-gradient(0deg,#e5ddbf 0 17px,#c2b89b 18px 20px); box-shadow:inset 0 0 0 3px #fff7,0 3px 0 #6b6d5766; }
+.map-fountain { inset:17% 20%; font-size:0; border:6px solid #8c8674; background:#59b9d3; box-shadow:inset 0 0 0 5px #d5c9a8,0 2px 0 #5c665c66; }
+.map-fountain:before { content:""; width:28%; height:48%; border-radius:50%; background:#c8baa0; border:4px solid #847d70; box-shadow:0 7px 0 #6e675d; }.map-fountain:after{content:"";position:absolute;top:-18%;width:7px;height:34%;border-radius:50%;background:#e8fbff99;box-shadow:8px 2px 0 #e8fbff66,-8px 4px 0 #e8fbff66;}
+.map-house { font-size:0; width:76px; height:53px; border:3px solid #9d7656; background:linear-gradient(#f8e8c9 0 70%,#bd8e60 70%); box-shadow:inset 0 -6px 0 #8e6c4f,2px 4px 0 #5e684855; }
+.map-house:before { top:-20px; left:-7px; width:82px; height:37px; background:repeating-linear-gradient(135deg,#cf5b49 0 9px,#a9433d 10px 13px); border:3px solid #913c35; border-radius:8px 24px 3px 4px; transform:skewX(-12deg); }
+.map-house:after { content:""; position:absolute; left:42%; bottom:0; width:17px; height:24px; border:2px solid #765039; background:linear-gradient(90deg,#80c8d0 0 42%,transparent 43% 57%,#80c8d0 58%); box-shadow:-30px -19px 0 -6px #7ec5ca,30px -19px 0 -6px #7ec5ca; }
+.map-house span { bottom:-15px; z-index:2; font-size:8px; font-weight:900; color:#55463c; background:#fffdebd9; border:1px solid #a89170; box-shadow:0 1px 0 #0002; }
+.map-fence { position:absolute; z-index:5; background:repeating-linear-gradient(90deg,#cdbd91 0 7px,#8d7659 8px 11px,#eadcaf 12px 18px); border:2px solid #80664d; opacity:.95; }
+.fence-n{left:3%;right:27%;top:6%;height:11px}.fence-e{right:2%;top:37%;height:12px;width:29%;transform:rotate(90deg)}.fence-s{left:29%;right:3%;bottom:5%;height:11px}
+.map-bush{position:absolute;z-index:5;color:#397446;font-size:23px;letter-spacing:-8px;filter:drop-shadow(2px 3px 0 #41663a55)}.bush-n{left:2%;top:20%}.bush-s{left:68%;bottom:1%}.bush-e{right:0;top:66%}
+.map-flower{position:absolute;z-index:6;color:#fff8dc;text-shadow:0 0 0 #d87578;font-size:15px;line-height:1.15}.flowers-w{left:18%;bottom:17%}.flowers-e{right:18%;top:42%}
+.map-bench{position:absolute;z-index:6;color:#79513b;font-size:28px;transform:rotate(90deg);text-shadow:2px 3px 0 #5d543e55}.bench-w{left:26%;top:57%}.bench-e{right:26%;top:57%}.map-sign{position:absolute;z-index:7;color:#6b4b35;font-size:27px;filter:drop-shadow(1px 2px #0003)}.sign-s{left:57%;bottom:17%}
+@media(max-width:700px){.map-house{width:59px;height:42px}.map-house:before{width:65px;height:29px;top:-16px}.map-house:after{height:19px;width:13px;box-shadow:-23px -14px 0 -5px #7ec5ca,23px -14px 0 -5px #7ec5ca}.map-house span{font-size:7px;bottom:-13px}.map-fountain{border-width:4px}.map-fence{height:8px}.map-bush{font-size:18px}.map-flower{font-size:11px}}
